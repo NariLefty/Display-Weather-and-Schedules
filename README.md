@@ -1,4 +1,4 @@
-# Show-Weather-and-Schedules
+# Display-Weather-and-Schedules
 
 ## Overview
 ![image.png](./image.png)  
