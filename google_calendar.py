@@ -41,13 +41,24 @@ def get_schedules():
 
         responses = []
         for event in events:
-            start = datetime.datetime.strptime(
-                event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S+09:00'
-            )
-            end = datetime.datetime.strptime(
-                event['end']['dateTime'], '%Y-%m-%dT%H:%M:%S+09:00'
-            )
-            time = f"{start:%Y-%m-%d %H:%M}~{end:%H:%M}"
+            print(event)
+            print(event["start"].keys())
+            print(type(event["start"].keys()))
+            print(list(event["start"].keys()))
+            if "dateTime" in list(event["start"].keys()):
+                start = datetime.datetime.strptime(
+                    event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S+09:00'
+                )
+                end = datetime.datetime.strptime(
+                    event['end']['dateTime'], '%Y-%m-%dT%H:%M:%S+09:00'
+                )
+                time = f"{start:%Y-%m-%d %H:%M}~{end:%H:%M}"
+            else:
+                date = datetime.datetime.strptime(
+                    event["start"]["date"], "%Y-%m-%d"
+                )
+                time = f"{date:%Y-%m-%d}            "
+
             responses.append(f"{time}\n{event['summary']}")
         
     except HttpError as error:
