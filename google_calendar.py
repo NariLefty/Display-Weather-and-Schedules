@@ -41,10 +41,6 @@ def get_schedules():
 
         responses = []
         for event in events:
-            print(event)
-            print(event["start"].keys())
-            print(type(event["start"].keys()))
-            print(list(event["start"].keys()))
             if "dateTime" in list(event["start"].keys()):
                 start = datetime.datetime.strptime(
                     event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S+09:00'
